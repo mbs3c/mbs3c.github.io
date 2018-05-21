@@ -18,9 +18,14 @@ Reading through the PHP manual provides some valuable information:
 
 ["When a string is evaluated in a numeric context, the resulting value and type are determined as follows. The value is given by the initial portion of the string. If the string starts with valid numeric data, this will be the value used. Otherwise, the value will be 0 (zero)."](http://php.net/manual/en/language.types.string.php#language.types.string.conversion)
 
-With this knowledge in hand, we can observe that the MD5 hash begins with a zero: 'echo -n admin1674227342 | md5sum'
-Therefore, we know that using a zero as input will pass both the strict and loose comparisons, leaving the final string length obstacle. This can be bypassed by inputting 32 zero characters, which doesn't change the actual value but does provide the necessary length to allow for bypass.
+With this knowledge in hand, we can observe that the MD5 hash begins with a zero:
 
+{% highlight bash %}
+echo -n admin1674227342 | md5sum
+0e463854177790028825434984462555
+{% endhighlight %}
+
+Therefore, we know that using a zero as input will pass both the strict and loose comparisons, leaving the final string length obstacle. This final boss can be bypassed by inputting 32 zero characters, which does not change the numeric value and does provide the necessary length to bypass the string length comparison, providing the flag to us.
 
 {% highlight php linenos %}
 <?php
