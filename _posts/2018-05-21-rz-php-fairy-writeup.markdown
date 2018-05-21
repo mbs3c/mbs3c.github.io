@@ -52,3 +52,7 @@ echo -n admin1674227342 | md5sum
 Therefore, we know that using a zero as input will pass both the strict and loose comparisons, leaving the final string length obstacle. This final boss can be bypassed by inputting 32 zero characters, which does not change the numeric value and does provide the necessary length to bypass the string length comparison, providing the flag to us.
 
 ![Flag]({{ site.baseurl }}/images/php-fairy-flag.png)
+
+Useful resources to learn more about PHP Type Juggling issues:
+* [https://www.owasp.org/images/6/6b/PHPMagicTricks-TypeJuggling.pdf](https://www.owasp.org/images/6/6b/PHPMagicTricks-TypeJuggling.pdf)
+* [https://www.alertlogic.com/blog/writing-exploits-for-exotic-bug-classes-php-type-juggling/](https://www.alertlogic.com/blog/writing-exploits-for-exotic-bug-classes-php-type-juggling/)
