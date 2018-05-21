@@ -4,7 +4,7 @@ title:  "Writeup - ringzer0team.com challenges (web 254) - 'PHP Fairy'"
 date:   2018-05-21 10:35:02 -0400
 categories: ringzer0team.com writeup
 ---
-![an image alt text]({{ site.baseurl }}/images/rz-php-fairy.png)
+![Challenge Intro]({{ site.baseurl }}/images/rz-php-fairy.png)
 
 This challenge initially presents a login screen which has a single password field as input, a login button, and another button which displays the underlying PHP source code (with the flag obfuscated). Taking a look at the code, password input is handled by $_GET['pass'], and there are several obstacles in the way which prevent access to the flag.
 
