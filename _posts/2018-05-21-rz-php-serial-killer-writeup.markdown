@@ -112,9 +112,9 @@ Based on a review of the code, this object we have constructed should be suitabl
 
 ![Flag]({{ site.baseurl }}/images/rz-flag.png)
 
-Useful resources for learning more about PHP Object Injection:
-
+Useful resources to learn more about PHP Object Injection:
 [https://www.nds.rub.de/media/hfs/attachments/files/2010/03/hackpra09_fu_esser_php_exploits1.pdf](https://www.nds.rub.de/media/hfs/attachments/files/2010/03/hackpra09_fu_esser_php_exploits1.pdf)
+[https://www.alertlogic.com/blog/writing-exploits-for-exotic-bug-classes-unserialize()/](https://www.alertlogic.com/blog/writing-exploits-for-exotic-bug-classes-unserialize()/)
 [https://www.notsosecure.com/remote-code-execution-via-php-unserialize/](https://www.notsosecure.com/remote-code-execution-via-php-unserialize/)
 [https://www.insomniasec.com/downloads/publications/Practical%20PHP%20Object%20Injection.pdf](https://www.insomniasec.com/downloads/publications/Practical%20PHP%20Object%20Injection.pdf)
 [https://www.insomniasec.com/downloads/publications/Deserialization%20-%20%20What%20Could%20Go%20Wrong.pdf](https://www.insomniasec.com/downloads/publications/Deserialization%20-%20%20What%20Could%20Go%20Wrong.pdf)
