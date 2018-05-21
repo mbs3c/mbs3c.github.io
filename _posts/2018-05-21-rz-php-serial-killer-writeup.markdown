@@ -19,7 +19,12 @@ What happens if we add a single character anywhere within the "?o=" value? A wil
 
 ![Challenge Intro]({{ site.baseurl }}/images/rz-serial-stack-trace.png)
 
-Cleaning this up, we have the following PHP code. This shows the same 'RandomClass' class as exists in the discovered serialized string. What if we could inject our own object with arbitrary values? Without going into too much detail (recommended reading links to follow at the end of this post), we can take advantage of the __construct() ('magic method')[http://php.net/manual/en/language.oop5.magic.php]
+Cleaning this up, we have the following PHP code. This shows the same 'RandomClass' class as exists in the discovered serialized string. What if we could inject our own object with arbitrary values? In order to do that, we must first understand how the available PHP ['magic methods'](http://php.net/manual/en/language.oop5.magic.php) within the stack trace might assist us.
+
+Walking through the PHP code, we first notice two private members (?). Immediately following that is the __construct() method. This magic method is called on each newly-created object, generally utilized for initialization of some sort. Inside the constructor, we see an empty array cast to an object, which is assigned to $this->uStruct.
+
+From the PHP documentation, ["If a value of any other type is converted to an object, a new instance of the stdClass built-in class is created. If the value was NULL, the new instance will be empty. An array converts to an object with properties named by keys and corresponding values."](http://php.net/manual/en/language.types.object.php#language.types.object.casting)
+
 
 {% highlight php linenos %}
 <?php
