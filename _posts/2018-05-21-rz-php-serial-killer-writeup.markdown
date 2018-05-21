@@ -108,5 +108,3 @@ NjoiYWN0aW9uIjtzOjg6IlNob3dGbGFnIjt9fQ==
 
 {% endhighlight %}
 
-Based on a review of the code, this object we have constructed should be suitable to reach the ShowFlag() method properly, considering that **(a)** $this->uStruct->time is not null, **(b)** $this->uStruct->flag is set to 'Please?', and **(c)** $obj->action is set to 'ShowFlag'. Sending this payload results in the flag being displayed on the page.
-
