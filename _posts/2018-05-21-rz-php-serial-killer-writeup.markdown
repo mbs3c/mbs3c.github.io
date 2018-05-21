@@ -19,12 +19,13 @@ What happens if we add a single character anywhere within the "?o=" value? A wil
 
 ![Challenge Intro]({{ site.baseurl }}/images/rz-serial-stack-trace.png)
 
-Cleaning this up, we have the following PHP code. This shows the same 'RandomClass' class as exists in the discovered serialized string. What if we could inject our own object with arbitrary values? In order to do that, we must first understand how the available PHP ['magic methods'](http://php.net/manual/en/language.oop5.magic.php) within the stack trace might assist us.
+Cleaning this up reveals the following PHP code. This shows the same 'RandomClass' class as exists in the discovered serialized string. What if we could inject our own object with arbitrary values and somehow retrieve the flag? In order to do that, we must first understand how the available PHP ['magic methods'](http://php.net/manual/en/language.oop5.magic.php) within the stack trace might assist us. Recommended reading for understanding PHP Object Injection will also be linked at the bottom of this post.
 
-Walking through the PHP code, we first notice two private members (?). Immediately following that is the __construct() method. This magic method is called on each newly-created object, generally utilized for initialization of some sort. Inside the constructor, we see an empty array cast to an object, which is assigned to $this->uStruct.
+Walking through the PHP code, first notice two private members (?). Immediately following that is the __construct() method. This magic method is called on each newly-created object, generally utilized for initialization of some sort. Inside the constructor is an empty array cast to an object, which is assigned to $this->uStruct.
 
 From the PHP documentation, ["If a value of any other type is converted to an object, a new instance of the stdClass built-in class is created. If the value was NULL, the new instance will be empty. An array converts to an object with properties named by keys and corresponding values."](http://php.net/manual/en/language.types.object.php#language.types.object.casting)
 
+The next magic method is __set. Reading PHP docs, ["__set() is run when writing data to inaccessible properties."](http://php.net/manual/en/language.oop5.overloading.php#language.oop5.overloading.members). This looks potentially promising. The __get() magic method is also defined here, but what really catches the eyes is the ShowFlag() function.
 
 {% highlight php linenos %}
 <?php
