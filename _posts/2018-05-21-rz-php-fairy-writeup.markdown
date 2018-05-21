@@ -30,13 +30,6 @@ Therefore, we know that using a zero as input will pass both the strict and loos
 {% highlight php linenos %}
 <?php
 $output = "";
-if (isset($_GET['code'])) {
-  $content = file_get_contents(__FILE__);
-  $content = preg_replace('/FLAG\-[0-9a-zA-Z_?!.,]+/i', 'FLAG-XXXXXXXXXXXXXXXXXXXXXXX', $content);
-  echo '<div class="code-highlight">';
-  highlight_string($content);
-  echo '</div>';
-}
 
 if (isset($_GET['pass'])) {
   if(!preg_match('/^[^\W_]+$/', $_GET['pass'])) {
