@@ -5,7 +5,7 @@ date:   2018-05-21 11:14:41 -0400
 categories: ringzer0team.com writeup
 ---
 ![Challenge Intro]({{ site.baseurl }}/images/rz-serial-init.png)
-This challenge initially displays a timestamp on the page. Digging into the request being sent, notice that there's a base64 encoded string in our GET request:
+This challenge initially displays a timestamp on the page. Digging into the request being sent, notice that there is a base64 encoded string within the GET request:
 
 ![Challenge Intro]({{ site.baseurl }}/images/rz-serial-base64.png)
 
@@ -74,4 +74,19 @@ Walking through the PHP code, first notice two private members (?). Immediately 
 
 From the PHP documentation, ["If a value of any other type is converted to an object, a new instance of the stdClass built-in class is created. If the value was NULL, the new instance will be empty. An array converts to an object with properties named by keys and corresponding values."](http://php.net/manual/en/language.types.object.php#language.types.object.casting)
 
-The next magic method is __set. Reading PHP docs, ["__set() is run when writing data to inaccessible properties."](http://php.net/manual/en/language.oop5.overloading.php#language.oop5.overloading.members). This looks potentially promising. The __get() magic method is also defined here, but what really catches the eyes is the ShowFlag() function. If only it was possible to set the variables $this->uStruct->time and $this->uStruct->flag...
+The next magic method is __set. Reading PHP docs, ["__set() is run when writing data to inaccessible properties."](http://php.net/manual/en/language.oop5.overloading.php#language.oop5.overloading.members). This looks potentially promising. The __get() magic method is also defined here, but what really catches the eyes is the ShowFlag() function. If only it was possible to set the variables $this->uStruct->time and $this->uStruct->flag and retrieve the flag...
+
+
+
+{% highlight php %}
+$obj = new RandomClass();
+$obj->time = "1";
+$obj->flag = "Please?";
+$obj->action = "ShowFlag";
+echo serialize($obj);
+
+/* 
+Output:
+O:11:"RandomClass":1:{s:20:"RandomClassuStruct";O:8:"stdClass":3:{s:4:"time";s:1:"1";s:4:"flag";s:7:"Please?";s:6:"action";s:8:"ShowFlag";}}
+*/
+{% endhighlight %}
