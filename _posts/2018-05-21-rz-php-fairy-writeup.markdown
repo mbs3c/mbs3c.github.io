@@ -50,3 +50,5 @@ echo -n admin1674227342 | md5sum
 {% endhighlight %}
 
 Therefore, we know that using a zero as input will pass both the strict and loose comparisons, leaving the final string length obstacle. This final boss can be bypassed by inputting 32 zero characters, which does not change the numeric value and does provide the necessary length to bypass the string length comparison, providing the flag to us.
+
+![Flag]({{ site.baseurl }}/images/php-fairy-flag.png)
