@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Writeup - ringzer0team.com challenges - 'PHP Fairy'"
+title:  "Writeup - ringzer0team.com challenges (web 254) - 'PHP Fairy'"
 date:   2018-05-21 10:35:02 -0400
 categories: ringzer0team.com writeup
 ---
