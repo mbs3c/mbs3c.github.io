@@ -24,7 +24,7 @@ github_username: mbs3c
 
 # Build settings
 markdown: kramdown
-theme: minima
+theme: hacker
 plugins:
   - jekyll-feed
 
