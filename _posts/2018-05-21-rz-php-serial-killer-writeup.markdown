@@ -70,7 +70,7 @@ class RandomClass {
 ?>
 {% endhighlight %}
 
-Walking through the PHP code, first notice two private members (?). Immediately following that is the __construct() method. This magic method is called on each newly-created object, generally utilized for initialization of some sort. Inside the constructor is an empty array cast to an object, which is assigned to $this->uStruct.
+Walking through the PHP code, first notice two private members. Immediately following that is the __construct() method. This magic method is called on each newly-created object, generally utilized for initialization of some sort. Inside the constructor is an empty array cast to an object, which is assigned to $this->uStruct.
 
 From the PHP documentation, ["If a value of any other type is converted to an object, a new instance of the stdClass built-in class is created. If the value was NULL, the new instance will be empty. An array converts to an object with properties named by keys and corresponding values."](http://php.net/manual/en/language.types.object.php#language.types.object.casting)
 
@@ -111,3 +111,15 @@ NjoiYWN0aW9uIjtzOjg6IlNob3dGbGFnIjt9fQ==
 Based on a review of the code, this object we have constructed should be suitable to reach the ShowFlag() method properly, considering that **(a)** $this->uStruct->time is not null, **(b)** $this->uStruct->flag is set to 'Please?', and **(c)** $obj->action is set to 'ShowFlag'. Sending this payload results in the flag being displayed on the page.
 
 ![Flag]({{ site.baseurl }}/images/rz-flag.png)
+
+Useful resources for learning more about PHP Object Injection:
+
+[https://www.nds.rub.de/media/hfs/attachments/files/2010/03/hackpra09_fu_esser_php_exploits1.pdf](https://www.nds.rub.de/media/hfs/attachments/files/2010/03/hackpra09_fu_esser_php_exploits1.pdf)
+[https://www.notsosecure.com/remote-code-execution-via-php-unserialize/](https://www.notsosecure.com/remote-code-execution-via-php-unserialize/)
+[https://www.insomniasec.com/downloads/publications/Practical%20PHP%20Object%20Injection.pdf](https://www.insomniasec.com/downloads/publications/Practical%20PHP%20Object%20Injection.pdf)
+[https://www.insomniasec.com/downloads/publications/Deserialization%20-%20%20What%20Could%20Go%20Wrong.pdf](https://www.insomniasec.com/downloads/publications/Deserialization%20-%20%20What%20Could%20Go%20Wrong.pdf)
+[https://websec.files.wordpress.com/2010/11/rips_ccs.pdf](https://websec.files.wordpress.com/2010/11/rips_ccs.pdf)
+[https://tom.vg/2013/09/wordpress-php-object-injection/](https://tom.vg/2013/09/wordpress-php-object-injection/)
+[https://www.tarlogic.com/en/blog/how-php-object-injection-works-php-object-injection/](https://www.tarlogic.com/en/blog/how-php-object-injection-works-php-object-injection/)
+[https://www.owasp.org/index.php/PHP_Object_Injection](https://www.owasp.org/index.php/PHP_Object_Injection)
+[https://securitycafe.ro/2015/01/05/understanding-php-object-injection/](https://securitycafe.ro/2015/01/05/understanding-php-object-injection/)
